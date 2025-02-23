@@ -170,7 +170,7 @@ Only perform this if this is the first time you will setup your Git Environment
       - In the same file (PersonDemo.java), outside the Person class, create the main method. This is where your program will start running.
       ```Java
       public class PersonDemo {
-          public static void main(String args) {
+          public static void main(String[] args) {
               // Code will go here
           }
       }
