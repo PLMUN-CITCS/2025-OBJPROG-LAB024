@@ -88,7 +88,8 @@ Only perform this if this is the first time you will setup your Git Environment
 
    **Desired Output:**
    ```txt
-   //Modify this
+   Name: Bob, Age: 30
+   Name: Unknown, Age: 0
    ```
 
    **Notable Observations:**
