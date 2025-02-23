@@ -1,7 +1,7 @@
-# **2025-OBJPROG-LAB023**
+# **2025-OBJPROG-LAB024**
 Week 05 - Methods in Java
 
-Laboratory # 23 - Week 05 - Guided Coding Exercise 2: Using Access Modifiers, Methods, and Attributes
+Laboratory # 24 - Week 05 - Guided Coding Exercise 3: Constructors and (Discussion on) Deconstructors
 
 ## **Instructions**
 
@@ -77,14 +77,14 @@ Only perform this if this is the first time you will setup your Git Environment
 
 ### **Step 3: Complete the Assignment**
 
-**Laboratory # 23 - Week 05 - Guided Coding Exercise 2: Using Access Modifiers, Methods, and Attributes**
+**Laboratory # 24 - Week 05 - Guided Coding Exercise 3: Constructors and (Discussion on) Deconstructors**
 
    **Objective:**
    - Understand and use access modifiers (public, private, protected).
    - Define methods and attributes within a class.
 
    **File Naming Convention:**
-   - `BankAccountDemo.java`
+   - `PersonDemo.java`
 
    **Desired Output:**
    ```txt
@@ -92,141 +92,114 @@ Only perform this if this is the first time you will setup your Git Environment
    ```
 
    **Notable Observations:**
-   - You can directly access the accountHolder and accountType because they have public and protected access respectively.
-   - You cannot directly access balance (private) from the main method.
-   - You need to use the public methods (deposit, withdraw, getBalance) to interact with the private balance.
+   - The Person class has two constructors: a parameterized constructor and a default constructor.
+   - When you create a Person object using new Person("Bob", 30), the parameterized constructor is called, and the object's name and age are initialized with the provided values.
+   - When you create a Person object using new Person(), the default constructor is called, and the object's name is set to "Unknown" and age to 0.
 
    **Java Programming Best Practices:**
-   - Use private access for sensitive data to protect it from unintended modification.
-   - Provide public methods to allow controlled access to private attributes.
-   - Use protected access when you want to allow access within the same package and subclasses.
+   - Provide both a default constructor and parameterized constructors for flexibility in creating objects.
+   - Use the this keyword inside constructors to refer to the object's instance variables.
+   - Keep constructors concise and focused on initializing attributes.
       
    **Step-by-Step Instructions:**
 
    1. Create the BankAccount Class
-      - Create a new Java file named `BankAccountDemo.java`.
-      - Define a class called `BankAccount`.
+      - Create a new Java file named `PersonDemo.java`.
+      - Define a class called `Person`.
       ```Java      
-      class BankAccount {
+      class Person {
           // Code will go here
       }
       ```
             
    2. Add Attributes with Access Modifiers
-      - Inside the BankAccount class, declare three instance variables (attributes) with different access modifiers:
-         - accountHolder of type String with public access.
-         - balance of type double with private access.
-         - accountType of type String with protected access.
+      - Inside the Person class, declare two instance variables (attributes):
+         - name of type String
+         - age of type int
       ```Java
-      class BankAccount {
-          public String accountHolder;
-          private double balance;
-          protected String accountType;
+      class Person {
+          String name;
+          int age;
       }
       ```
 
-   3. Create a Constructor
-      - Inside the BankAccount class, create a constructor.
-      - The constructor should take three parameters:
-         - a String for the accountHolder
-         - a double for the balance
-         - a String for the accountType
-      - Inside the constructor, initialize the accountHolder, balance, and accountType attributes using the provided parameters.
+   3. Create a Parameterized Constructor
+      - Inside the Person class, create a constructor. This is a special method that has the same name as the class and is used to initialize the object's attributes when it's created.
+      - The constructor should take two parameters: a String for the name and an int for the age.
+      - Inside the constructor, use the this keyword to refer to the object's instance variables and assign the parameter values to them.
       ```Java
-      class BankAccount {
+      class Person {
           //... (attributes)...
       
-          public BankAccount(String accountHolder, double balance, String accountType) {
-              this.accountHolder = accountHolder;
-              this.balance = balance;
-              this.accountType = accountType;
+          public Person(String name, int age) {
+              this.name = name;
+              this.age = age;
           }
       }
       ```
 
-   4. Add a deposit Method
-      - Inside the BankAccount class, create a method named deposit.
-      - This method should take a double parameter named amount.
-      - Add logic to increase the balance by the amount if the amount is positive.
+   4. Create a Default Constructor
+      - Inside the Person class, create another constructor, but this time with no parameters. This is called a default constructor.
+      - Inside the default constructor, initialize the name attribute to "Unknown" and the age attribute to 0.
       ```Java
-      class BankAccount {
-          //... (attributes and constructor)...
+      class Person {
+          //... (attributes and parameterized constructor)...
       
-          public void deposit(double amount) {
-              if (amount > 0) {
-                  balance += amount;
-              }
+          public Person() {
+              this.name = "Unknown";
+              this.age = 0;
           }
       }
       ```
 
-   5. Add a withdraw Method
-      - Inside the BankAccount class, create a method named withdraw.
-      - This method should take a double parameter named amount.
-      - Add logic to decrease the balance by the amount only if the amount is positive and less than or equal to the current balance.
+   5. Add a displayPerson Method
+      - Inside the Person class, create a method named displayPerson.
+      - This method should not return any value (void).
+      - Inside the displayPerson method, add a println statement to print the person's name and age in the format: "Name: [name], Age: [age]"
       ```Java
-      class BankAccount {
-          //... (other methods)...
+      class Person {
+          //... (attributes and constructors)...
       
-          public void withdraw(double amount) {
-              if (amount > 0 && amount <= balance) {
-                  balance -= amount;
-              }
+          public void displayPerson() {
+              System.out.println("Name: " + name + ", Age: " + age);
           }
       }
       ```
 
-   6. Add a getBalance Method
-      - Inside the BankAccount class, create a method named getBalance.
-      - This method should return a double value representing the current balance.
+   6. Create the main Method
+      - In the same file (PersonDemo.java), outside the Person class, create the main method. This is where your program will start running.
       ```Java
-      class BankAccount {
-          //... (other methods)...
-      
-          public double getBalance() {
-              return balance;
-          }
-      }
-      ```
-
-   7. Create the main Method
-      - In the same file (BankAccountDemo.java), outside the BankAccount class, create the main method.
-      ```Java
-      public class BankAccountDemo {
+      public class PersonDemo {
           public static void main(String args) {
               // Code will go here
           }
       }
       ```
 
-   8. Create a BankAccount Object
-      - Inside the main method, create an object of the BankAccount class named myAccount. Use the constructor to initialize the accountHolder, balance, and accountType with appropriate values.
+   7. Create Person Objects
+      - Inside the main method, create an object of the Person class named person1. Use the parameterized constructor and provide the name "Bob" and age 30 as arguments.
       ```Java
-      BankAccount myAccount = new BankAccount("Alice", 1000.0, "Checking");
+      Person person1 = new Person("Bob", 30);
+      ```
+      - Create another Person object named person2 using the default constructor (no arguments).
+      ```Java
+      Person person2 = new Person();
       ```
 
-   9. Access and Modify Account Details
-      - In the main method:
-         - Call the deposit method to deposit some amount into the account.
-         - Call the withdraw method to withdraw some amount.
-         - Print the accountHolder name using myAccount.accountHolder.
-         - Print the accountType using myAccount.accountType.
-         - Print the current balance using myAccount.getBalance().
+   8. Call the displayPerson Method
+      - In the main method, call the displayPerson() method on both person1 and person2 objects.
       ```Java
-      myAccount.deposit(250.0);
-      myAccount.withdraw(100.0);
-      System.out.println("Account Holder: " + myAccount.accountHolder);
-      System.out.println("Account Type: " + myAccount.accountType);
-      System.out.println("Current Balance: $" + myAccount.getBalance());
+      person1.displayPerson();
+      person2.displayPerson();
       ```
 
-   10. Compile and Run
-       - Save the file as `BankAccountDemo.java`.
-       - Compile the code using `javac BankAccountDemo.java` in your terminal or command prompt.
-       - Run the compiled code using `java BankAccountDemo`.
+   9. Compile and Run
+       - Save the file as `PersonDemo.java`.
+       - Compile the code using `javac PersonDemo.java` in your terminal or command prompt.
+       - Run the compiled code using `java PersonDemo`.
 
    **Conclusion**
-   This exercise demonstrated the use of access modifiers in Java. Access modifiers control the visibility and accessibility of class members (attributes and methods). By using appropriate access modifiers, you can encapsulate data and protect it from unauthorized access, leading to more robust and maintainable code.
+   This exercise demonstrated the use of constructors in Java. Constructors are special methods used to initialize objects when they are created. They allow you to set the initial values of an object's attributes, ensuring that the object is in a valid state when it's first used. Java also has automatic garbage collection, which means you don't need to worry about manually deallocating memory for objects. The JVM takes care of cleaning up unused objects, making memory management easier for developers.
 
 ### **Step 4: Push Changes to GitHub**
 Once you've completed your changes, follow these steps to upload your work to your GitHub repository.
@@ -250,7 +223,7 @@ Once you've completed your changes, follow these steps to upload your work to yo
    Write a meaningful commit message:
    
    ```bash
-   git commit -m "Submitting OBJPROG Week 05 - Laboratory # 23"
+   git commit -m "Submitting OBJPROG Week 05 - Laboratory # 24"
    ```
    
 4. Push your changes to GitHub:
